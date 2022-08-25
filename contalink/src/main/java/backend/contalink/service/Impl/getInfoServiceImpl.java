@@ -1,6 +1,7 @@
 package backend.contalink.service.Impl;
 
 import backend.contalink.entity.Invoices;
+import backend.contalink.entity.request.getInfoRequest;
 import backend.contalink.entity.response.getInfoResponse;
 import backend.contalink.repository.getInfoRepository;
 import backend.contalink.service.getInfoService;
@@ -23,16 +24,16 @@ public class getInfoServiceImpl implements getInfoService {
     getInfoResponse infoResponse = new getInfoResponse();
 
     @Override
-    public getInfoResponse obtenerReporte(String fechaInicio, String fechaFin) {
+    public getInfoResponse obtenerReporte(getInfoRequest getInfoRequest) {
         List<Invoices> invoicesList = new ArrayList<>();
 
         try {
             // Parámetros request
-            String pFechaInicio = fechaInicio;
-            String pFechaFin = fechaFin;
+            String pFechaInicio = getInfoRequest.getFechaInicio();
+            String pFechaFin = getInfoRequest.getFechaFin();
 
-            System.out.println(":::::: pFechaInicio :: " + fechaInicio);
-            System.out.println(":::::: pFechaFin :: " + fechaFin);
+            System.out.println(":::::: pFechaInicio :: " + pFechaInicio);
+            System.out.println(":::::: pFechaFin :: " + pFechaFin);
 
             List<Invoices> consulta = getInfoRepository.obtenerReporte(pFechaInicio, pFechaFin);
             System.out.println(":::::: Consulta :: " + consulta);
